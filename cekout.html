@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VENTIX.ID - Data Pemesanan</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f5f7fb;color:#111827;padding-bottom:120px}
+.banner img{width:100%;max-height:420px;object-fit:cover;display:block}
+.timer-wrap{background:#fff;padding:20px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.05)}
+.timer{font-size:42px;font-weight:800;color:#3158ff}
+.container{max-width:900px;margin:auto;padding:20px}
+.card{background:#fff;border-radius:20px;padding:20px;margin-bottom:20px;box-shadow:0 8px 25px rgba(0,0,0,.05)}
+.form-group{margin-bottom:16px}
+label{display:block;margin-bottom:8px;font-weight:600}
+input,select,textarea{width:100%;padding:14px;border:1px solid #dbe2ea;border-radius:12px}
+.ticket-counter{display:flex;gap:10px;align-items:center}
+.ticket-counter button{width:45px;height:45px;border:none;border-radius:10px;background:#3158ff;color:#fff;font-size:24px}
+.ticket-counter span{font-size:24px;font-weight:700;min-width:40px;text-align:center}
+.footer{position:fixed;left:0;right:0;bottom:0;background:#fff;padding:15px;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+.pay-btn{width:100%;padding:16px;border:none;border-radius:14px;background:#3158ff;color:#fff;font-size:18px;font-weight:700}
+.pay-btn:disabled{opacity:.5}
+#loading{display:none;position:fixed;inset:0;background:rgba(0,0,0,.75);color:#fff;justify-content:center;align-items:center;flex-direction:column;z-index:9999}
+</style>
+</head>
+<body>
+
+<div class="banner">
+<img src="banner.png" alt="Banner">
+</div>
+
+<div class="timer-wrap">
+<div id="timer" class="timer">10:00</div>
+<div>Selesaikan pemesanan sebelum waktu habis</div>
+</div>
+
+<div class="container">
+<div class="card">
+<h2>Data Pemesanan</h2>
+
+<div class="form-group">
+<label>Nama Lengkap</label>
+<input type="text" id="nama">
+</div>
+
+<div class="form-group">
+<label>Jenis Identitas</label>
+<select id="identitas">
+<option value="">Pilih</option>
+<option>KTP</option>
+<option>SIM</option>
+<option>Paspor</option>
+<option>Kartu Pelajar</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Nomor Identitas</label>
+<input type="text" id="nomorIdentitas">
+</div>
+
+<div class="form-group">
+<label>Email</label>
+<input type="email" id="email">
+</div>
+
+<div class="form-group">
+<label>Nomor WhatsApp</label>
+<input type="tel" id="whatsapp">
+</div>
+
+<div class="form-group">
+<label>Alamat</label>
+<textarea id="alamat"></textarea>
+</div>
+
+<div class="form-group">
+<label>Jumlah Tiket</label>
+<div class="ticket-counter">
+<button type="button" onclick="kurangTiket()">-</button>
+<span id="jumlahTiket">1</span>
+<button type="button" onclick="tambahTiket()">+</button>
+</div>
+</div>
+
+<div id="holderContainer"></div>
+</div>
+
+<div class="card">
+<input type="checkbox" id="setuju">
+<label for="setuju">Saya menyatakan data yang diisi sudah benar</label>
+</div>
+</div>
+
+<div class="footer">
+<button id="payBtn" class="pay-btn" disabled onclick="mulaiPembayaran()">BAYAR SEKARANG</button>
+</div>
+
+<div id="loading">
+<h2 id="loadingText">PEMBAYARAN SEDANG DIPROSES</h2>
+</div>
+
+<script>
+let jumlahTiket=1;
+const holderContainer=document.getElementById('holderContainer');
+
+function renderHolder(){
+holderContainer.innerHTML='';
+for(let i=2;i<=jumlahTiket;i++){
+holderContainer.innerHTML+=`<div class="form-group"><label>Nama Pemegang Tiket #${i}</label><input class="holder-input"></div>`;
+}
+cekForm();
+}
+
+function tambahTiket(){jumlahTiket++;jumlahTiketEl.textContent=jumlahTiket;renderHolder()}
+function kurangTiket(){if(jumlahTiket>1){jumlahTiket--;jumlahTiketEl.textContent=jumlahTiket;renderHolder()}}
+
+const jumlahTiketEl=document.getElementById('jumlahTiket');
+['nama','identitas','nomorIdentitas','email','whatsapp','alamat','setuju'].forEach(id=>{
+document.getElementById(id).addEventListener('input',cekForm);
+document.getElementById(id).addEventListener('change',cekForm);
+});
+
+function cekForm(){
+const valid =
+nama.value.trim() &&
+identitas.value.trim() &&
+nomorIdentitas.value.trim() &&
+email.value.trim() &&
+whatsapp.value.trim() &&
+alamat.value.trim() &&
+setuju.checked;
+
+let holderValid=true;
+document.querySelectorAll('.holder-input').forEach(i=>{if(!i.value.trim()) holderValid=false;});
+payBtn.disabled=!(valid && holderValid);
+}
+
+let waktu=600;
+setInterval(()=>{
+if(waktu<=0)return;
+waktu--;
+let m=Math.floor(waktu/60);
+let d=waktu%60;
+timer.textContent=String(m).padStart(2,'0')+':'+String(d).padStart(2,'0');
+},1000);
+
+function mulaiPembayaran(){
+loading.style.display='flex';
+setTimeout(()=>{window.location.href='qris.html';},60000);
+}
+</script>
+</body>
+</html>
