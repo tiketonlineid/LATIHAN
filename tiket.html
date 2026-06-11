@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>VENTIX.ID - Pilih Tiket</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f5f7fb;
+color:#111;
+padding-bottom:160px;
+overflow-x:hidden;
+}
+
+/* HEADER */
+
+.header{
+position:sticky;
+top:0;
+z-index:1000;
+background:#fff;
+padding:14px 22px;
+box-shadow:0 2px 15px rgba(0,0,0,.05);
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.logo{
+height:48px;
+width:auto;
+object-fit:contain;
+}
+
+.header-right{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.lang{
+padding:8px 14px;
+background:#eef3ff;
+border-radius:999px;
+font-size:13px;
+font-weight:700;
+color:#2554ff;
+}
+
+/* BANNER */
+
+.hero{
+width:100%;
+background:linear-gradient(135deg,#1537b9,#4160ff);
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+width:350px;
+height:350px;
+border-radius:50%;
+background:rgba(255,255,255,.08);
+top:-120px;
+right:-120px;
+}
+
+.hero::after{
+content:'';
+position:absolute;
+width:250px;
+height:250px;
+border-radius:50%;
+background:rgba(255,255,255,.05);
+bottom:-100px;
+left:-80px;
+}
+
+.banner-img{
+width:100%;
+display:block;
+max-height:420px;
+object-fit:cover;
+}
+
+.event-info{
+padding:25px;
+color:#fff;
+position:relative;
+z-index:2;
+}
+
+.event-title{
+font-size:34px;
+font-weight:800;
+margin-bottom:8px;
+}
+
+.event-sub{
+font-size:15px;
+opacity:.9;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:25px;
+}
+
+.section-title{
+font-size:30px;
+font-weight:800;
+margin-bottom:20px;
+color:#111827;
+}
+
+/* TICKET CARD */
+
+.ticket{
+position:relative;
+background:#fff;
+border-radius:28px;
+margin-bottom:24px;
+overflow:hidden;
+border:1px solid #e8edf5;
+box-shadow:0 8px 25px rgba(0,0,0,.05);
+transition:.3s ease;
+}
+
+.ticket:hover{
+transform:translateY(-3px);
+box-shadow:0 12px 35px rgba(0,0,0,.08);
+}
+
+.ticket::before,
+.ticket::after{
+content:'';
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+width:38px;
+height:38px;
+border-radius:50%;
+background:#f5f7fb;
+border:1px solid #e8edf5;
+z-index:2;
+}
+
+.ticket::before{
+left:-19px;
+}
+
+.ticket::after{
+right:-19px;
+}
+
+.ticket-top{
+padding:24px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+gap:15px;
+}
+
+.ticket-name{
+font-size:20px;
+font-weight:700;
+color:#111827;
+}
+
+.ticket-desc{
+padding:0 24px 20px;
+font-size:14px;
+color:#6b7280;
+line-height:1.6;
+}
+
+.ticket-separator{
+border-top:2px dashed #dfe5ee;
+margin:0 24px;
+}
+
+.ticket-bottom{
+padding:24px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+flex-wrap:wrap;
+gap:15px;
+}
+
+.price{
+font-size:28px;
+font-weight:800;
+color:#111827;
+}
+
+.badge{
+padding:8px 14px;
+border-radius:999px;
+font-size:12px;
+font-weight:700;
+letter-spacing:.5px;
+}
+
+.badge.sale{
+background:#e7edff;
+color:#3158ff;
+}
+
+.badge.sold{
+background:#ffe5e5;
+color:#dc2626;
+}
+
+.pick-btn{
+background:#3158ff;
+color:#fff;
+border:none;
+padding:14px 22px;
+border-radius:14px;
+font-weight:700;
+cursor:pointer;
+transition:.25s;
+}
+
+.pick-btn:hover{
+transform:translateY(-2px);
+}
+
+.sold-text{
+font-weight:800;
+font-size:15px;
+color:#dc2626;
+letter-spacing:.5px;
+}
+
+.counter{
+display:none;
+align-items:center;
+gap:12px;
+}
+
+.counter button{
+width:45px;
+height:45px;
+border:none;
+border-radius:12px;
+background:#3158ff;
+color:#fff;
+font-size:24px;
+font-weight:700;
+cursor:pointer;
+}
+
+.counter span{
+font-size:22px;
+font-weight:800;
+min-width:35px;
+text-align:center;
+}
+
+/* FOOTER */
+
+.footer{
+position:fixed;
+left:0;
+right:0;
+bottom:0;
+background:#fff;
+padding:18px;
+box-shadow:0 -8px 30px rgba(0,0,0,.08);
+z-index:999;
+}
+
+.footer-row{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:12px;
+}
+
+.footer-small{
+font-size:13px;
+color:#6b7280;
+}
+
+.footer-total{
+font-size:24px;
+font-weight:800;
+color:#111827;
+}
+
+.buy-btn{
+width:100%;
+border:none;
+padding:18px;
+border-radius:16px;
+background:#3158ff;
+color:#fff;
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+transition:.3s;
+}
+
+.buy-btn:disabled{
+background:#aab7ff;
+cursor:not-allowed;
+}
+
+.buy-btn:hover:not(:disabled){
+transform:translateY(-2px);
+}
+
+/* LOADING */
+
+.loading{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.75);
+backdrop-filter:blur(4px);
+justify-content:center;
+align-items:center;
+z-index:99999;
+}
+
+.loading-box{
+background:#fff;
+padding:30px;
+border-radius:24px;
+text-align:center;
+width:280px;
+}
+
+.spinner{
+width:65px;
+height:65px;
+border:6px solid #e5e7eb;
+border-top:6px solid #3158ff;
+border-radius:50%;
+margin:auto;
+animation:spin 1s linear infinite;
+}
+
+.loading-title{
+margin-top:18px;
+font-size:18px;
+font-weight:700;
+}
+
+.loading-sub{
+margin-top:6px;
+font-size:13px;
+color:#6b7280;
+}
+
+@keyframes spin{
+100%{
+transform:rotate(360deg);
+}
+}
+
+/* RESPONSIVE */
+
+@media(max-width:768px){
+
+.container{
+padding:16px;
+}
+
+.event-title{
+font-size:26px;
+}
+
+.section-title{
+font-size:24px;
+}
+
+.ticket-name{
+font-size:17px;
+}
+
+.price{
+font-size:22px;
+}
+
+.ticket-bottom{
+flex-direction:column;
+align-items:flex-start;
+}
+
+.pick-btn{
+width:100%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+
+<div class="loading" id="loading">
+
+<div class="loading-box">
+
+<div class="spinner"></div>
+
+<div class="loading-title">
+Memproses Pesanan...
+</div>
+
+<div class="loading-sub">
+Mohon tunggu sebentar
+</div>
+
+</div>
+
+</div>
+
+<!-- HEADER -->
+
+<header class="header">
+
+<img src="logo-ventix.png"
+class="logo"
+alt="VENTIX.ID">
+
+<div class="header-right">
+
+<div class="lang">
+ID
+</div>
+
+</div>
+
+</header>
+
+<!-- BANNER -->
+
+<section class="hero">
+
+<img
+src="banner-neverland2.png"
+class="banner-img"
+alt="Neverland">
+
+<div class="event-info">
+
+<div class="event-title">
+NEVERLAND BANDUNG
+</div>
+
+<div class="event-sub">
+Festival Musik & Hiburan
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTENT -->
+
+<div class="container">
+
+<div class="section-title">
+🎫 Kategori Tiket
+</div>
+
+<div id="ticketList"></div>
+
+</div>
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<div class="footer-row">
+
+<div>
+
+<div
+class="footer-small"
+id="selectedQty">
+0 Tiket Dipilih
+</div>
+
+<div
+class="footer-total"
+id="selectedTotal">
+Rp0
+</div>
+
+</div>
+
+<div>
+<b>Total</b>
+</div>
+
+</div>
+
+<button
+id="buyBtn"
+class="buy-btn"
+disabled
+onclick="checkout()">
+
+Beli Sekarang
+
+</button>
+
+</div>
+
+<script>
+
+const tickets = [
+
+{
+name:'PRESALE - FESTIVAL',
+price:140000,
+sale:true,
+desc:'Akses Festival Area'
+},
+
+{
+name:'NORMAL - FESTIVAL',
+price:185000,
+sale:true,
+desc:'Tiket Festival Reguler'
+},
+
+{
+name:'NORMAL - VIP',
+price:255000,
+sale:true,
+desc:'Akses VIP Area'
+},
+
+{
+name:'EARLY BIRD - FESTIVAL',
+price:100000,
+sale:false,
+desc:'Kategori telah habis'
+},
+
+{
+name:'EARLY BIRD - VIP',
+price:150000,
+sale:false,
+desc:'Kategori telah habis'
+},
+
+{
+name:'PRESALE - VIP',
+price:200000,
+sale:false,
+desc:'Kategori telah habis'
+}
+
+];
+
+let totalHarga = 0;
+let totalTiket = 0;
+
+const selected = {};
+
+const ticketList =
+document.getElementById('ticketList');
+
+function rupiah(n){
+
+return 'Rp' +
+n.toLocaleString('id-ID');
+
+}
+
+tickets.forEach((item,index)=>{
+
+ticketList.innerHTML += `
+<div class="ticket">
+
+<div class="ticket-top">
+
+<div class="ticket-name">
+${item.name}
+</div>
+
+<div class="badge ${item.sale ? 'sale':'sold'}">
+
+${item.sale ? 'ON SALE' : 'SOLD OUT'}
+
+</div>
+
+</div>
+
+<div class="ticket-desc">
+${item.desc}
+</div>
+
+<div class="ticket-separator"></div>
+
+<div class="ticket-bottom">
+
+<div class="price">
+${rupiah(item.price)}
+</div>
+
+${item.sale ? `
+
+<button
+class="pick-btn"
+id="btn${index}"
+onclick="showCounter(${index},${item.price})">
+
+Pilih Tiket
+
+</button>
+
+<div
+class="counter"
+id="counter${index}">
+
+<button
+onclick="minus(${index},${item.price})">
+
+−
+
+</button>
+
+<span id="qty${index}">
+1
+</span>
+
+<button
+onclick="plus(${index},${item.price})">
+
++
+
+</button>
+
+</div>
+
+` : `
+
+<div class="sold-text">
+SOLD OUT
+</div>
+
+`}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+function updateFooter(){
+
+document.getElementById(
+'selectedQty'
+).innerText =
+totalTiket + ' Tiket Dipilih';
+
+document.getElementById(
+'selectedTotal'
+).innerText =
+rupiah(totalHarga);
+
+const buyBtn =
+document.getElementById('buyBtn');
+
+buyBtn.disabled =
+totalTiket === 0;
+
+}
+
+function showCounter(index,price){
+
+selected[index] = 1;
+
+totalTiket += 1;
+
+totalHarga += price;
+
+document.getElementById(
+'btn'+index
+).style.display='none';
+
+document.getElementById(
+'counter'+index
+).style.display='flex';
+
+updateFooter();
+
+}
+
+function plus(index,price){
+
+selected[index]++;
+
+totalTiket++;
+
+totalHarga += price;
+
+document.getElementById(
+'qty'+index
+).innerText =
+selected[index];
+
+updateFooter();
+
+}
+
+function minus(index,price){
+
+selected[index]--;
+
+totalTiket--;
+
+totalHarga -= price;
+
+if(selected[index] <= 0){
+
+selected[index]=0;
+
+document.getElementById(
+'counter'+index
+).style.display='none';
+
+document.getElementById(
+'btn'+index
+).style.display='block';
+
+}else{
+
+document.getElementById(
+'qty'+index
+).innerText =
+selected[index];
+
+}
+
+if(totalTiket < 0)
+totalTiket = 0;
+
+if(totalHarga < 0)
+totalHarga = 0;
+
+updateFooter();
+
+}
+
+function checkout(){
+
+if(totalTiket <= 0){
+return;
+}
+
+localStorage.setItem(
+'jumlahTiket',
+totalTiket
+);
+
+localStorage.setItem(
+'totalPembayaran',
+totalHarga
+);
+
+document.getElementById(
+'loading'
+).style.display='flex';
+
+setTimeout(()=>{
+
+window.location.href =
+'form.html';
+
+},3000);
+
+}
+
+updateFooter();
+
+</script>
+
+</body>
+</html>
