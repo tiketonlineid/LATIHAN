@@ -3,65 +3,392 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Artatix Style Event</title>
+
+<title>Neverland Bandung</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;background:#f5f5f7;font-family:Poppins,sans-serif;color:#0f172a}
-.top{background:#1836b6;height:115px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;color:#fff}
-.logo{font-size:34px;font-weight:700}
-.icons{display:flex;gap:14px}
-.circle{width:64px;height:64px;border-radius:50%;background:#2950e6}
-.banner img{width:100%;display:block}
-.wrap{padding:32px}
-.tag{display:inline-block;background:#e9ecff;color:#4565ff;padding:12px 18px;border-radius:12px}
-h1{font-size:34px;margin:20px 0 30px}
-h2{font-size:22px}
-.item{display:flex;gap:18px;margin:20px 0;font-size:18px}
-.ico{width:44px;height:44px;border-radius:50%;background:#dfe7ff}
-.muted{color:#74839a;font-weight:600;margin-top:25px}
-.org{display:flex;align-items:center;gap:18px;margin:15px 0 35px}
-.org img{width:82px;height:82px;border-radius:50%}
-.social{display:flex;gap:18px}
-.social a{background:#eaf0f7;padding:14px 22px;border-radius:999px;text-decoration:none;color:#4160ff;font-weight:600}
-.tabs{display:flex;gap:40px;overflow:auto;margin-top:35px;border-bottom:1px solid #ddd}
-.tab{padding:0 0 16px;font-size:18px;color:#74839a}
-.active{color:#000;border-bottom:4px solid #4160ff}
-.content{padding-top:25px;font-size:18px;line-height:1.8}
-.talent{display:flex;align-items:center;gap:16px;margin:18px 0}
-.talent img{width:70px;height:70px;border-radius:12px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.fac{font-size:18px}
-.card{background:#eaf0f7;border-radius:28px;padding:26px;margin:35px 0}
-.price{display:flex;justify-content:space-between;font-size:22px;font-weight:700}
-.btn{display:block;text-align:center;background:#3f61f3;color:#fff;padding:20px;border-radius:18px;text-decoration:none;font-size:22px;font-weight:600;margin-top:20px}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Poppins',sans-serif;
+background:#f5f5f7;
+color:#0f172a;
+}
+
+/* ================= NAVBAR ================= */
+
+.top{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100px;
+background:#1736b8;
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+z-index:9999;
+}
+
+.logo img{
+height:50px;
+width:auto;
+display:block;
+}
+
+.nav-right{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.lang-btn{
+height:60px;
+padding:0 22px;
+border:none;
+border-radius:999px;
+background:#2d4de0;
+color:#fff;
+font-size:22px;
+font-weight:600;
+display:flex;
+align-items:center;
+gap:10px;
+cursor:pointer;
+}
+
+.flag{
+font-size:24px;
+}
+
+.nav-btn{
+width:60px;
+height:60px;
+border:none;
+border-radius:50%;
+background:#2d4de0;
+color:#fff;
+font-size:24px;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+/* ================= CONTENT ================= */
+
+.main{
+padding-top:100px;
+}
+
+.banner img{
+width:100%;
+display:block;
+}
+
+.wrap{
+max-width:1200px;
+margin:auto;
+padding:30px;
+}
+
+.tag{
+display:inline-block;
+padding:10px 16px;
+background:#e9ecff;
+color:#4160ff;
+border-radius:12px;
+font-weight:600;
+}
+
+h1{
+font-size:36px;
+margin:20px 0;
+}
+
+h2{
+font-size:24px;
+margin-bottom:15px;
+}
+
+.item{
+display:flex;
+align-items:center;
+gap:15px;
+margin:18px 0;
+font-size:18px;
+}
+
+.ico{
+width:45px;
+height:45px;
+border-radius:50%;
+background:#dfe7ff;
+flex-shrink:0;
+}
+
+.muted{
+color:#74839a;
+font-weight:600;
+margin-top:30px;
+}
+
+.org{
+display:flex;
+align-items:center;
+gap:15px;
+margin-top:15px;
+margin-bottom:30px;
+}
+
+.org img{
+width:80px;
+height:80px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.social{
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+margin-top:15px;
+}
+
+.social a{
+text-decoration:none;
+background:#eaf0f7;
+padding:12px 20px;
+border-radius:999px;
+font-weight:600;
+color:#4160ff;
+}
+
+.tabs{
+display:flex;
+gap:30px;
+overflow:auto;
+margin-top:30px;
+border-bottom:1px solid #ddd;
+}
+
+.tab{
+padding-bottom:15px;
+color:#74839a;
+white-space:nowrap;
+}
+
+.active{
+color:#000;
+border-bottom:4px solid #4160ff;
+}
+
+.content{
+padding-top:25px;
+line-height:1.8;
+font-size:18px;
+}
+
+.talent{
+display:flex;
+align-items:center;
+gap:15px;
+margin:15px 0;
+}
+
+.talent img{
+width:70px;
+height:70px;
+border-radius:12px;
+object-fit:cover;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+margin-top:15px;
+}
+
+.fac{
+background:#fff;
+padding:15px;
+border-radius:15px;
+}
+
+.card{
+background:#eaf0f7;
+padding:25px;
+border-radius:25px;
+margin-top:35px;
+}
+
+.price{
+display:flex;
+justify-content:space-between;
+font-size:22px;
+font-weight:700;
+}
+
+.btn{
+display:block;
+text-align:center;
+background:#4160ff;
+color:#fff;
+text-decoration:none;
+padding:18px;
+border-radius:18px;
+font-size:20px;
+font-weight:600;
+margin-top:20px;
+transition:.3s;
+}
+
+.btn:hover{
+opacity:.9;
+}
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+.top{
+height:90px;
+padding:0 15px;
+}
+
+.logo img{
+height:40px;
+}
+
+.lang-btn{
+height:55px;
+padding:0 18px;
+font-size:18px;
+}
+
+.nav-btn{
+width:55px;
+height:55px;
+font-size:22px;
+}
+
+.main{
+padding-top:90px;
+}
+
+.wrap{
+padding:20px;
+}
+
+h1{
+font-size:28px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.price{
+font-size:18px;
+flex-direction:column;
+gap:10px;
+}
+
+}
+
 </style>
 </head>
+
 <body>
-<div class="top">
-<div class="logo">Artatix</div>
-<div class="icons"><div class="circle"></div><div class="circle"></div><div class="circle"></div></div>
+
+<!-- NAVBAR -->
+
+<header class="top">
+
+<div class="logo">
+<img src="logo.png" alt="Logo">
 </div>
+
+<div class="nav-right">
+
+<button class="lang-btn">
+<span class="flag">🇮🇩</span>
+<span>ID</span>
+</button>
+
+<button class="nav-btn">
+🔍
+</button>
+
+<button class="nav-btn">
+☰
+</button>
+
+</div>
+
+</header>
+
+<div class="main">
+
+<!-- BANNER -->
 
 <div class="banner">
-<img src="https://via.placeholder.com/1200x450?text=EVENT+BANNER">
+<img src="banner.png" alt="Banner Event">
 </div>
 
+<!-- CONTENT -->
+
 <div class="wrap">
-<div class="tag">🎵 Musik</div>
+
+<div class="tag">
+🎵 Musik
+</div>
+
 <h1>NEVERLAND BANDUNG</h1>
 
 <h2>Detail Acara</h2>
-<div class="item"><div class="ico"></div>16 Agustus 2026</div>
-<div class="item"><div class="ico"></div>14:00 - 23:00</div>
-<div class="item"><div class="ico"></div>Pangkalan TNI AU Husein Sastranegara, Kota Bandung, Jawa Barat</div>
 
-<div class="muted">Penyelenggara</div>
-<div class="org">
-<img src="https://via.placeholder.com/82">
-<div style="font-size:22px">Neverland</div>
+<div class="item">
+<div class="ico"></div>
+<span>16 Agustus 2026</span>
 </div>
 
-<div class="muted">Media Sosial</div>
+<div class="item">
+<div class="ico"></div>
+<span>14:00 - 23:00</span>
+</div>
+
+<div class="item">
+<div class="ico"></div>
+<span>Pangkalan TNI AU Husein Sastranegara, Kota Bandung, Jawa Barat</span>
+</div>
+
+<div class="muted">
+Penyelenggara
+</div>
+
+<div class="org">
+<img src="organizer.png" alt="">
+<div>Neverland</div>
+</div>
+
+<div class="muted">
+Media Sosial
+</div>
+
 <div class="social">
 <a href="#">Instagram</a>
 <a href="#">TikTok</a>
@@ -75,33 +402,61 @@ h2{font-size:22px}
 </div>
 
 <div class="content">
+
 <h2>Deskripsi</h2>
-<p>Neverland terinspirasi dari makna Neverland sebagai tempat untuk bermain, berpetualang dan menikmati musik bersama.</p>
+
+<p>
+Neverland merupakan festival musik yang menghadirkan pengalaman hiburan,
+petualangan dan kebersamaan dalam satu acara yang spektakuler.
+</p>
 
 <h2>Talent</h2>
-<div class="talent"><img src="https://via.placeholder.com/70"><div>LAVORA</div></div>
-<div class="talent"><img src="https://via.placeholder.com/70"><div>NDX AKA</div></div>
-<div class="talent"><img src="https://via.placeholder.com/70"><div>GUYON WATON</div></div>
+
+<div class="talent">
+<img src="talent1.jpg">
+<div>LAVORA</div>
+</div>
+
+<div class="talent">
+<img src="talent2.jpg">
+<div>NDX AKA</div>
+</div>
+
+<div class="talent">
+<img src="talent3.jpg">
+<div>GUYON WATON</div>
+</div>
 
 <h2>Fasilitas Event</h2>
+
 <div class="grid">
+
 <div class="fac">🍔 Food Court</div>
-<div class="fac">➕ Medis</div>
 <div class="fac">🕌 Musholla</div>
+<div class="fac">🚻 Toilet</div>
 <div class="fac">🅿 Area Parkir</div>
 <div class="fac">📷 Photo Booth</div>
-<div class="fac">🚻 Toilet</div>
+<div class="fac">➕ Pos Medis</div>
+
 </div>
 
 <div class="card">
+
 <div class="price">
 <span>Harga mulai dari</span>
 <span>Rp100.000</span>
 </div>
-<a class="btn" href="#">🎫 Beli Tiket</a>
+
+<a href="tiket.html" class="btn">
+🎫 Beli Tiket
+</a>
+
 </div>
 
 </div>
 </div>
+
+</div>
+
 </body>
 </html>
